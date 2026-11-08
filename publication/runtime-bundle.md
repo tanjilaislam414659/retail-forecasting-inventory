@@ -68,3 +68,19 @@ It was **not run during publication preparation**. Downloading the workbook alon
 does not recreate the frozen runtime bundle. Preparation, calibration and the
 consumed final test are separate historical stages: do not run them merely to
 start the portfolio demo or present repeated assessment as new held-out evidence.
+
+### Release-download verification limitation
+
+The canonical browser-download URLs timed out for the verification clients,
+including a hosted runner. The official authenticated release-asset API downloaded
+the ZIP successfully and its SHA-256 matches. The release-check workflow records
+which route was used; API fallback does not claim anonymous access succeeded.
+If browser downloads are unavailable, authenticated GitHub CLI provides the
+supported alternative (GitHub CLI is optional, not installed by this project):
+
+```powershell
+gh release download v0.1.0 --repo tanjilaislam414659/retail-forecasting-inventory --pattern "retail-forecasting-runtime-v0.1.0.zip" --pattern "SHA256SUMS.txt" --dir artifacts/downloads
+```
+
+Verify the committed SHA-256 before extraction. This is a verification-environment
+limitation, not evidence that all users will encounter the same network failure.

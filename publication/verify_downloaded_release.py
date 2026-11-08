@@ -1,4 +1,4 @@
-"""Anonymous public release download and installed HTTP inference smoke check.
+"""Published release download and installed HTTP inference smoke check.
 
 This verifies packaging/integrity only; it does not score forecasts or run research.
 """
@@ -12,19 +12,31 @@ BASE="https://github.com/tanjilaislam414659/retail-forecasting-inventory/release
 OUT=ROOT/"artifacts"; DOWNLOADS=OUT/"downloads"; DOWNLOADS.mkdir(parents=True,exist_ok=True)
 NAMES=("SHA256SUMS.txt","retail-forecasting-runtime-v0.1.0.zip","LICENSE","DATA-LICENSE.md","CC-BY-4.0-NOTICE.txt")
 records=[]
+api="https://api.github.com/repos/tanjilaislam414659/retail-forecasting-inventory"
+token=os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
+release_metadata=None
 for name in NAMES:
-    for attempt in range(3):
-        try:
-            req=urllib.request.Request(BASE+"/"+name,headers={"User-Agent":"Retail-Forecasting-Release-Check"})
-            with urllib.request.urlopen(req,timeout=25) as response:
-                raw=response.read();status=response.status
-            break
-        except (urllib.error.URLError,TimeoutError):
-            if attempt==2:raise
-            time.sleep(2)
+    canonical_error=None
+    try:
+        req=urllib.request.Request(BASE+"/"+name,headers={"User-Agent":"Retail-Forecasting-Release-Check"})
+        with urllib.request.urlopen(req,timeout=10) as response:
+            raw=response.read();status=response.status
+        route="anonymous browser-download URL"
+    except (urllib.error.URLError,TimeoutError) as error:
+        canonical_error=type(error).__name__+": "+str(error)
+        if not token:raise RuntimeError("Browser download unavailable; authenticated API fallback needs GH_TOKEN or GITHUB_TOKEN") from error
+        print("::warning::Browser download unavailable for "+name+"; using official authenticated asset API. Anonymous access is not verified.",flush=True)
+        headers={"User-Agent":"Retail-Forecasting-Release-Check","Authorization":"Bearer "+token,"Accept":"application/vnd.github+json"}
+        if release_metadata is None:
+            with urllib.request.urlopen(urllib.request.Request(api+"/releases/tags/v0.1.0",headers=headers),timeout=25) as response:release_metadata=json.load(response)
+        asset=next(item for item in release_metadata["assets"] if item["name"]==name)
+        headers["Accept"]="application/octet-stream"
+        with urllib.request.urlopen(urllib.request.Request(api+"/releases/assets/"+str(asset["id"]),headers=headers),timeout=25) as response:
+            raw=response.read();status=response.status
+        route="authenticated official release-asset API fallback"
     assert status==200
     (DOWNLOADS/name).write_bytes(raw)
-    records.append({"name":name,"url":BASE+"/"+name,"http_status":status,"bytes":len(raw),"sha256":hashlib.sha256(raw).hexdigest(),"authenticated":False})
+    records.append({"name":name,"url":BASE+"/"+name,"http_status":status,"bytes":len(raw),"sha256":hashlib.sha256(raw).hexdigest(),"route":route,"canonical_error":canonical_error})
 checks=dict(line.split(None,1)[::-1] for line in (DOWNLOADS/"SHA256SUMS.txt").read_text().splitlines())
 for item in records:
     if item["name"]!="SHA256SUMS.txt":assert item["sha256"]==checks[item["name"]]
@@ -72,6 +84,6 @@ with (OUT/"release-smoke.log").open("w",encoding="utf-8") as log:
         assert request("/forecast",{"sku":"unknown","origin":"2011-11-07"})[0]==422
     finally:
         process.terminate();process.wait(timeout=15)
-result={"status":"PASS","scope":"Anonymous published attachment download and installed inference regression; no experiment or scoring","download_checks":records,"runtime_zip_sha256":expected["sha256"],"parity_cases":cases,"dated_predictions":cases*28,"numeric_values":cases*28*5,"maximum_absolute_difference":maximum_difference,"rtol":1e-12,"atol":1e-9,"server_stopped":True,"commit":os.environ.get("GITHUB_SHA")}
+result={"status":"PASS","scope":"Published attachment integrity and installed inference regression; no experiment or scoring","anonymous_downloads_verified":all(item["canonical_error"] is None for item in records),"download_checks":records,"runtime_zip_sha256":expected["sha256"],"parity_cases":cases,"dated_predictions":cases*28,"numeric_values":cases*28*5,"maximum_absolute_difference":maximum_difference,"rtol":1e-12,"atol":1e-9,"server_stopped":True,"commit":os.environ.get("GITHUB_SHA")}
 (OUT/"release-verification.json").write_text(json.dumps(result,indent=2)+"\n",encoding="utf-8")
 print(json.dumps(result,indent=2))

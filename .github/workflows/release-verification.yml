@@ -8,7 +8,7 @@ name: Published release verification
 permissions:
   contents: read
 jobs:
-  anonymous-download-and-inference:
+  release-download-and-inference:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
@@ -26,7 +26,9 @@ jobs:
           python scripts/build_demo_package.py --output dist/demo
           python -m pip install --no-deps dist/demo/*.whl
           python -m pip check
-      - name: Download public release anonymously and verify inference
+      - name: Download release, record access route and verify inference
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: python publication/verify_downloaded_release.py
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:

@@ -225,3 +225,19 @@ demand and causal business impact are unknown.
 The original development workspace, Git history and protected research artifacts
 remain separate and are not included in this fresh publication history. Scientific
 source/configuration hashes remain provenance metadata, not imported commits.
+
+### Release-download verification limitation
+
+The canonical browser-download URLs timed out for the verification clients,
+including a hosted runner. The official authenticated release-asset API downloaded
+the ZIP successfully and its SHA-256 matches. The release-check workflow records
+which route was used; API fallback does not claim anonymous access succeeded.
+If browser downloads are unavailable, authenticated GitHub CLI provides the
+supported alternative (GitHub CLI is optional, not installed by this project):
+
+```powershell
+gh release download v0.1.0 --repo tanjilaislam414659/retail-forecasting-inventory --pattern "retail-forecasting-runtime-v0.1.0.zip" --pattern "SHA256SUMS.txt" --dir artifacts/downloads
+```
+
+Verify the committed SHA-256 before extraction. This is a verification-environment
+limitation, not evidence that all users will encounter the same network failure.
