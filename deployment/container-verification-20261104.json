@@ -1,0 +1,117 @@
+{
+  "recorded_at_utc": "2026-11-04T19:52:36.053704+00:00",
+  "verification_revision": "runtime-0.1.0-container-verification.1",
+  "scope": "Actual Docker Desktop Linux completion of Milestone 9; no subsequent milestone",
+  "supersedes_only_execution_status_in": "deployment/release-0.1.0.json; original record and earlier source snapshots retained",
+  "original_engineering_release_sha256": "1d15585b962a14157f4939347bf02ecf73c3ff38932536e11d1b662f2f475ee6",
+  "pre_verification_snapshot_manifest_sha256": "7631b52751b04a1023393086b6050fff0f4b48cb42bab319a6cac211328e855c",
+  "source_sha256": {
+    "scripts/verify_container.py": "95f2fcdc4876570d06e97322d250cded93d70b5bd260566024cbe6f3c9480e0e",
+    "scripts/verify_compose_runtime.py": "6503e110681487655c9a32f843bfbaf20e1bc5ddee59f6d0fae2e47273311e15",
+    "docs/milestone-9.md": "058c0dc7841543ec20fc35dc4be00865d50e4dd6c542ddf354808ec9c4ef1639",
+    "deployment/README.md": "ee3604a27fa62ef92a8dc50095c3a17518b20d524270403f9a2ff98be4ab1f34"
+  },
+  "tested_dockerfile_sha256": "b38bd1289155e00b873df38cc57ca0f8bd15426dded6a6dccc3145628cb14b61",
+  "tested_compose_sha256": "d53d4d98069593a3127f0c0fe45a87f4779b05d1356adc54392b0bccafe16e62",
+  "image_build_readme_sha256": "314d81c018220de671e34e01c44dd259038e0143e649bd719f7ba4853faf28c9",
+  "image_build_readme_note": "Measured image built before current documentation-status update; runtime code and Docker configuration unchanged.",
+  "docker_environment": {
+    "desktop": "4.98.0",
+    "engine": "29.9.2",
+    "compose": "5.6.1",
+    "context": "desktop-linux",
+    "container_python": "3.13.18",
+    "os": "Linux",
+    "architecture": "x86_64"
+  },
+  "container_integration": {
+    "status": "PASS",
+    "container_execution_passed": true,
+    "image_id": "sha256:1654cb28fdfd8979101b9f1d0bb8ded7c3139e41164d2aa24227c524de4dbe44",
+    "image_size_bytes": 399768129,
+    "container_startup_ms": 2428.3821999999873,
+    "non_root_user": "10001:10001",
+    "parity_cases": 6,
+    "parity_dated_predictions": 168,
+    "maximum_absolute_numeric_difference": 0.0,
+    "relative_tolerance": 1e-12,
+    "absolute_tolerance": 1e-09,
+    "missing_corrupt_readiness": {
+      "missing": "missing_artifact",
+      "corrupt": "checksum_mismatch"
+    },
+    "scope": "Local container integration only; no new performance evaluation or publication"
+  },
+  "compose_security_and_timing": {
+    "status": "PASS",
+    "scope": "Actual Linux Docker Compose runtime verification",
+    "image_id": "sha256:1654cb28fdfd8979101b9f1d0bb8ded7c3139e41164d2aa24227c524de4dbe44",
+    "image_size_bytes": 399768129,
+    "container_health": "healthy",
+    "runtime_identity": {
+      "uid": 10001,
+      "gid": 10001,
+      "writes": {
+        "/runtime": {
+          "denied": true,
+          "errno": 30
+        },
+        "/app": {
+          "denied": true,
+          "errno": 30
+        }
+      }
+    },
+    "artifact_mount_type": "bind",
+    "artifact_mount_read_only": true,
+    "root_filesystem_read_only": true,
+    "host_bindings": [
+      {
+        "HostIp": "127.0.0.1",
+        "HostPort": "8000"
+      }
+    ],
+    "internal_host": "0.0.0.0",
+    "compose_start_to_healthy_ms": 7279.453299999886,
+    "artifact_load_ms": 873.7373690000254,
+    "warm_http_samples": 20,
+    "warm_http_median_ms": 22.48314999997092,
+    "warm_http_p95_ms": 26.541064999958053,
+    "invalid_request_status": 422,
+    "hosted_actions": "PENDING",
+    "containers_stopped_and_removed": true
+  },
+  "response_schema_release_labels_dates_no_actuals_customers": "PASS against actual saved container response",
+  "evidence_sha256": {
+    "reports/generated/deployment/compose-check-20261104T194820619330Z/commands.log": "9196a6bd813fc7fae3054e7728763e22c5771a4def2210d918c2598babd2d93b",
+    "reports/generated/deployment/compose-check-20261104T194820619330Z/compose.json": "c5d5fbb475f0369d9acbf7dbe885e249235e70bec6eb7204d52a7ad60c3e0490",
+    "reports/generated/deployment/compose-check-20261104T194820619330Z/example-response.json": "f26d25c6e28e56c330ae2b43c0782b2933295cf1f08a294176c177f73c45edd8",
+    "reports/generated/deployment/docker-check-20261104T194756704833Z/docker.json": "79dcb539c9866dcad427de61c831775ea37ae2e3f15cbe7b6427c4b335dcddf5",
+    "reports/generated/deployment/docker-check-20261104T194756704833Z/docker.log": "3a2ca79bc98687f5d404334b2ad33a22846a1571f88e193968151bbdeb63e0df"
+  },
+  "helper_corrections": [
+    {
+      "defect": "Windows default cp1252 decoding of Docker UTF-8 output",
+      "fix": "Explicit UTF-8 subprocess decoding with replacement for malformed log bytes"
+    },
+    {
+      "defect": "Startup connection reset aborted rather than retrying",
+      "fix": "Bounded startup retries on HTTPX transport errors; success still required before deadline"
+    },
+    {
+      "defect": "Reopening an HTTPX client already used during polling",
+      "fix": "contextlib.closing on the existing client; no reopening"
+    }
+  ],
+  "frozen_evaluation_and_forecaster_calibration_unchanged": true,
+  "original_api_release_unchanged": true,
+  "archived_source_snapshots_verified": true,
+  "new_training_recalibration_or_final_evaluation": false,
+  "hosted_actions": "PENDING; not triggered",
+  "published": false,
+  "remaining_limitations": [
+    "Representative six-case Linux parity, not all 2000 cohort/origin combinations",
+    "No hosted Actions/Ubuntu runner execution",
+    "No concurrency/load testing or production-readiness claim"
+  ]
+}

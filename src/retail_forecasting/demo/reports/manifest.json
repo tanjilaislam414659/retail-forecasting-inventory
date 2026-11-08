@@ -1,0 +1,26 @@
+{
+  "report_version": "0.1.0",
+  "source_sha256": {
+    "data/baselines/metrics_by_model.csv": "0dba27f66bb653ce8d3c134961fa613e66c689c8bf7d7e3e3a96033c6cfdd0ba",
+    "data/boosting/metrics_by_model.csv": "67678765bb1438f1151c54470df85cab8fa87fbc3eff4d16bf2b88ce137a2a60",
+    "data/final_evaluation/point_metrics_by_model.csv": "3df4e37dfbb5574d11b42719326f3ba7652e0183507dbcae553881803ccae699",
+    "data/uncertainty/metrics_overall.csv": "b78c05df4a3e69c87e7b2751ea8b4e5f8c12062a63fa8936f1166ca7589f7831",
+    "data/final_evaluation/interval_metrics_overall.csv": "762a25825cb03d9814341cc8051567fed303a31be0cdac6ec2b674d78e599987",
+    "data/inventory_simulation/v0.1.0/scenario_metrics.csv": "2bdcea5fd771e3cfe8ab2104840be8f063b031a2ffb0288e0c498d7b142217af"
+  },
+  "payloads": {
+    "validation.json": {
+      "sha256": "9c783d8d020eb2b5add66fdbaa09999bf405b3772f74a065c6ac423019425c90",
+      "bytes": 1988
+    },
+    "final-test.json": {
+      "sha256": "c5b55572642b457e545d1437ed0a89052896ec96bb98d34fed39d1c6f13beaf3",
+      "bytes": 1204
+    },
+    "inventory.json": {
+      "sha256": "50e951f34711b318c44c38537f0293057dfbb50ab35f22f75dedc9f6fe10bfdc",
+      "bytes": 10741
+    }
+  },
+  "scope": "Small saved aggregate reporting copies; no forecast evaluation, calibration or inventory simulation executed"
+}

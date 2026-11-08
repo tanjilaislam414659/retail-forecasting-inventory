@@ -1,0 +1,31 @@
+{
+  "experiment_id": "pooled-ridge-alpha-1-v1",
+  "recorded_before_fit_at_utc": "2026-11-01T18:29:46Z",
+  "primary_metric": "macro_mase",
+  "secondary_metrics": ["mae", "wape_pct", "mean_bias_units", "bias_pct"],
+  "comparison": "saved weekday_mean validation forecasts from milestone 3",
+  "training_origins": "all Mondays per SKU with 56 preceding retained daily values and 28 targets strictly before 2011-06-06",
+  "training_target_end_exclusive": "2011-06-06",
+  "validation_origins": [
+    "2011-06-06", "2011-06-13", "2011-06-20", "2011-06-27",
+    "2011-07-04", "2011-07-11", "2011-07-18", "2011-07-25",
+    "2011-08-01", "2011-08-08"
+  ],
+  "horizon_days": 28,
+  "numeric_features": ["horizon_day", "sales_mean_7", "sales_mean_28", "sales_mean_56", "sales_std_28", "zero_share_28", "weekday_mean_8"],
+  "categorical_features": ["sku", "target_weekday", "target_month"],
+  "std_ddof": 0,
+  "preprocessing": "StandardScaler numeric; dense OneHotEncoder categorical, drop=None, handle_unknown=ignore; training rows only",
+  "ridge": {"alpha": 1.0, "solver": "cholesky", "fit_intercept": true},
+  "target_transform": "none; original positive-sales units",
+  "sample_weights": "none; every supervised SKU/origin/horizon row has equal weight",
+  "clip_negative_predictions": true,
+  "prediction_rounding": false,
+  "fit_count": 1,
+  "validation_refit": false,
+  "blas_threads": 1,
+  "sku_tie_absolute_tolerance": 1e-10,
+  "relative_error_change": "100*(ridge/baseline-1); negative is better; undefined if baseline=0",
+  "bias_comparison": "signed difference and percentage-point difference; relative change in absolute bias magnitude",
+  "plot_selection": "original training-volume ranks 1,50,100; ties SKU ascending; origin 2011-08-08"
+}

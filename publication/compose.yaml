@@ -1,0 +1,4 @@
+# Use with demo/compose.yaml; keep the earlier demo image tag intact.
+services:
+  demo:
+    image: retail-forecasting-portfolio:0.1.0

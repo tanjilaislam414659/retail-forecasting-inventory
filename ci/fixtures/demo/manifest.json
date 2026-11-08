@@ -1,0 +1,19 @@
+{
+  "synthetic": true,
+  "report_version": "0.1.0",
+  "description": "Handcrafted API/report fixture numbers, no retail data, no fitted calibration or measured evaluation.",
+  "payloads": {
+    "validation.json": {
+      "sha256": "e095c3a06197dc3dad89eed2148a3b86d0d8f01fd718dced78feea15421647b4",
+      "bytes": 1296
+    },
+    "final-test.json": {
+      "sha256": "b74d3a2b87454168013d45f179547f7bba791bad93ee9a6050a983612b259273",
+      "bytes": 1296
+    },
+    "inventory.json": {
+      "sha256": "09567dbe884215c37f962ce140f147cbf5ca75122407306b1506a269ea77bf8a",
+      "bytes": 428
+    }
+  }
+}

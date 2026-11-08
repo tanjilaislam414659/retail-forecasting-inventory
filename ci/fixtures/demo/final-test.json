@@ -1,0 +1,65 @@
+{
+  "synthetic": true,
+  "period": "final_test",
+  "evidence": "SYNTHETIC TEST ONLY",
+  "first_target": "2011-06-06",
+  "last_target": "2011-07-03",
+  "instances_per_model": 56,
+  "unique_sku_target_pairs": 56,
+  "models": [
+    {
+      "model": "weekday_mean",
+      "macro_mase": 1.0,
+      "mae": 2.0,
+      "wape_pct": 50.0,
+      "bias_pct": 0.0,
+      "mean_bias_units": 0.0
+    },
+    {
+      "model": "seasonal_naive",
+      "macro_mase": 1.0,
+      "mae": 2.0,
+      "wape_pct": 50.0,
+      "bias_pct": 0.0,
+      "mean_bias_units": 0.0
+    },
+    {
+      "model": "recent_mean",
+      "macro_mase": 1.0,
+      "mae": 2.0,
+      "wape_pct": 50.0,
+      "bias_pct": 0.0,
+      "mean_bias_units": 0.0
+    },
+    {
+      "model": "ridge",
+      "macro_mase": 1.0,
+      "mae": 2.0,
+      "wape_pct": 50.0,
+      "bias_pct": 0.0,
+      "mean_bias_units": 0.0
+    },
+    {
+      "model": "hist_poisson",
+      "macro_mase": 1.0,
+      "mae": 2.0,
+      "wape_pct": 50.0,
+      "bias_pct": 0.0,
+      "mean_bias_units": 0.0
+    }
+  ],
+  "intervals": [
+    {
+      "level": 80,
+      "coverage_pct": 80.0,
+      "mean_width": 4.0,
+      "mean_interval_score": 5.0
+    },
+    {
+      "level": 95,
+      "coverage_pct": 80.0,
+      "mean_width": 4.0,
+      "mean_interval_score": 5.0
+    }
+  ]
+}

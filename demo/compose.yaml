@@ -1,0 +1,24 @@
+name: retail-forecasting-demo-local
+services:
+  demo:
+    image: retail-forecasting-demo:0.1.0
+    platform: linux/amd64
+    build:
+      context: ..
+      dockerfile: demo/Dockerfile
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - type: bind
+        source: ../artifacts/runtime/milestone-9-v0.1.0
+        target: /runtime
+        read_only: true
+        bind:
+          create_host_path: false
+    read_only: true
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=16m
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true

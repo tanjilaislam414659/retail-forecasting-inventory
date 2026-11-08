@@ -1,0 +1,46 @@
+{
+  "period": "final_test",
+  "evidence": "consumed final test",
+  "first_target": "2011-09-05",
+  "last_target": "2011-12-04",
+  "models": [
+    {
+      "model": "seasonal_naive",
+      "mae": 35.58307142857143,
+      "wape_pct": 110.56406955711162,
+      "macro_mase": 1.0422700979139865,
+      "mean_bias_units": -2.7385,
+      "bias_pct": -8.509094137360869,
+      "row_count": 28000.0
+    },
+    {
+      "model": "weekday_mean",
+      "mae": 29.453821428571427,
+      "wape_pct": 91.51920366650761,
+      "macro_mase": 0.8655844735139318,
+      "mean_bias_units": -2.369375,
+      "bias_pct": -7.3621453064485705,
+      "row_count": 28000.0
+    }
+  ],
+  "intervals": [
+    {
+      "level": 80.0,
+      "coverage_pct": 81.21428571428571,
+      "mean_width": 66.0806763392857,
+      "mean_interval_score": 175.14817633928573,
+      "miss_below_count": 2437.0,
+      "miss_above_count": 2823.0
+    },
+    {
+      "level": 95.0,
+      "coverage_pct": 94.12857142857143,
+      "mean_width": 152.09847466517863,
+      "mean_interval_score": 345.70780502232145,
+      "miss_below_count": 875.0,
+      "miss_above_count": 769.0
+    }
+  ],
+  "instances_per_model": 28000,
+  "unique_sku_target_pairs": 9100
+}

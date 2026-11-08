@@ -1,0 +1,14 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+The UCI-derived data in this distribution is licensed under CC BY 4.0,
+separately from the MIT-licensed project code.
+Full legal terms: https://creativecommons.org/licenses/by/4.0/legalcode.en
+Canonical license URI: https://creativecommons.org/licenses/by/4.0/
+
+Chen, D. (2012). Online Retail II. UCI Machine Learning Repository.
+https://doi.org/10.24432/C5CG6D
+Changes: audited reconciliation, positive-sales/returns routing, bounded daily
+SKU aggregation and training-only 100-SKU cohort selection. Customer identifiers
+and raw transactions are excluded. See DATA-LICENSE.md and the unchanged bundle's
+DATASET-ATTRIBUTION.md for attribution, transformation and limitation details.
+Data is supplied as-is, without warranties; retain attribution and these notices.

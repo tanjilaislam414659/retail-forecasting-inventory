@@ -1,0 +1,73 @@
+{
+  "period": "validation",
+  "evidence": "development",
+  "first_target": "2011-06-06",
+  "last_target": "2011-09-04",
+  "models": [
+    {
+      "model": "recent_mean",
+      "mae": 28.512150510204084,
+      "wape_pct": 103.51747367921888,
+      "macro_mase": 0.8041767173772416,
+      "mean_bias_units": -1.14875,
+      "bias_pct": -4.170702516684755,
+      "row_count": 28000.0
+    },
+    {
+      "model": "seasonal_naive",
+      "mae": 32.04167857142857,
+      "wape_pct": 116.3319342386604,
+      "macro_mase": 0.9159780850454959,
+      "mean_bias_units": -1.7008928571428572,
+      "bias_pct": -6.1753367746653645,
+      "row_count": 28000.0
+    },
+    {
+      "model": "weekday_mean",
+      "mae": 26.76550892857143,
+      "wape_pct": 97.17603956364843,
+      "macro_mase": 0.7581087856945473,
+      "mean_bias_units": -0.7120892857142858,
+      "bias_pct": -2.585342830061215,
+      "row_count": 28000.0
+    },
+    {
+      "model": "hist_poisson",
+      "mae": 27.462008271563075,
+      "wape_pct": 99.70478085869482,
+      "macro_mase": 0.7788052473354327,
+      "mean_bias_units": 3.046515422183555,
+      "bias_pct": 11.060813526372034,
+      "row_count": 28000.0
+    },
+    {
+      "model": "ridge",
+      "mae": 27.838066124390025,
+      "wape_pct": 101.07011311828518,
+      "macro_mase": 0.826062474781224,
+      "mean_bias_units": 3.268522638641243,
+      "bias_pct": 11.866842737603593,
+      "row_count": 28000.0
+    }
+  ],
+  "intervals": [
+    {
+      "level": 80.0,
+      "coverage_pct": 83.88571428571429,
+      "mean_width": 64.47496874999999,
+      "mean_interval_score": 156.32460267857144,
+      "miss_below_count": 2183.0,
+      "miss_above_count": 2329.0
+    },
+    {
+      "level": 95.0,
+      "coverage_pct": 95.44642857142857,
+      "mean_width": 149.7091532366072,
+      "mean_interval_score": 303.2531309151786,
+      "miss_below_count": 568.0,
+      "miss_above_count": 707.0
+    }
+  ],
+  "instances_per_model": 28000,
+  "unique_sku_target_pairs": 9100
+}

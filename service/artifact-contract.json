@@ -1,0 +1,84 @@
+{
+  "service_version": "0.1.0",
+  "forecast_release_id": "weekday-mean-1.0+fcd91ea17928",
+  "calibration_id": "sha256:8fba3ffbd0e1dd9d3827432f1c41d4c03326c904840dfd64db7cc0d2e701ea55",
+  "forecast_method": "weekday_mean",
+  "horizon_days": 28,
+  "cohort_size": 100,
+  "origins": [
+    "2011-06-06",
+    "2011-06-13",
+    "2011-06-20",
+    "2011-06-27",
+    "2011-07-04",
+    "2011-07-11",
+    "2011-07-18",
+    "2011-07-25",
+    "2011-08-01",
+    "2011-08-08",
+    "2011-09-05",
+    "2011-09-12",
+    "2011-09-19",
+    "2011-09-26",
+    "2011-10-03",
+    "2011-10-10",
+    "2011-10-17",
+    "2011-10-24",
+    "2011-10-31",
+    "2011-11-07"
+  ],
+  "artifacts": {
+    "history": {
+      "path": "data/processed/sales_daily.csv.gz",
+      "sha256": "1706ba44f962169979e87d5c6828f1336c87f6f30a2c3be176cda6483bf4bd45"
+    },
+    "cohort": {
+      "path": "data/processed/sku_selection.csv",
+      "sha256": "3d2a083f34bddffc50a15c5289c0509b72d8133e598b2fd7fbd1b30241cab79a"
+    },
+    "history_mask": {
+      "path": "data/baselines/history_and_scales.csv",
+      "sha256": "c62311ac2035f785e196d2798de2e7e4aff7697cdb68c1c6b808401eded6d5b9"
+    },
+    "quantiles": {
+      "path": "data/uncertainty/calibration_quantiles.csv",
+      "sha256": "8fba3ffbd0e1dd9d3827432f1c41d4c03326c904840dfd64db7cc0d2e701ea55"
+    },
+    "calibration_record": {
+      "path": "data/uncertainty/calibration-record.json",
+      "sha256": "562536c4940eeba19331feb9becf0f557158c4b90974fa60665b8134ad862de9"
+    },
+    "baseline_spec": {
+      "path": "configs/baselines.json",
+      "sha256": "6e2b86af57242bda3cb98e3dff710ed73bfe39ceddcf17ebe38298b204ae6196"
+    },
+    "release_spec": {
+      "path": "configs/final-evaluation.json",
+      "sha256": "df078757f6f58a1f2a6e843d2a6eeaba16fcd5e52538515bed0ec2a7ba851ff7"
+    },
+    "uncertainty_spec": {
+      "path": "configs/uncertainty.json",
+      "sha256": "f5ab59dea36bba14a309d3429ebe7b906e10071857bee264135d16cc84a46e4f"
+    },
+    "point_code": {
+      "path": "src/retail_forecasting/baselines.py",
+      "sha256": "2ecf368a994259b4f63ae996abe53427eee7d5664a471000506942a0c259561c"
+    },
+    "interval_code": {
+      "path": "src/retail_forecasting/uncertainty.py",
+      "sha256": "6627d097d4f659201848718429e0c079a3c257c8d4d4b70a72a4251b063c82d2"
+    },
+    "release_freeze": {
+      "path": "data/final_evaluation/freeze.json",
+      "sha256": "fcd91ea179289ae69dbe8ea473efbb8b1011a260a360694de17f340f2b9cf68b"
+    },
+    "release_manifest": {
+      "path": "data/final_evaluation/manifest.json",
+      "sha256": "50f9c5db53c0e8ad8e13aed229451dbcf103219c9cfd9cec2c0b84815c02a2e2"
+    },
+    "snapshot_manifest": {
+      "path": "artifacts/frozen-release/milestone-7-fcd91ea17928/snapshot-manifest.json",
+      "sha256": "ec50a5dc735d37f9c76e16cf81e41b1a8dac89ff779624d0a2ec0c93659262a4"
+    }
+  }
+}

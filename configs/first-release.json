@@ -1,0 +1,13 @@
+{
+  "release": "first-release-development-freeze-v1",
+  "recorded_at_utc": "2026-11-01T19:49:57Z",
+  "point_forecaster": "weekday_mean",
+  "definition": "target weekday mean of its eight occurrences in the complete 56 days strictly before issue origin",
+  "horizon_days": 28,
+  "cohort": "existing 100 selected SKUs",
+  "history_mask": "existing 484-row onset exclusion, preserving SKU 21166 distinction",
+  "scales": "existing frozen original-training lag-seven MASE scales",
+  "point_postprocessing": "none; preserve existing fractional point predictions",
+  "uncertainty_specification": "configs/uncertainty.json",
+  "final_test_status": "unevaluated; requires separately authorized frozen final evaluation"
+}

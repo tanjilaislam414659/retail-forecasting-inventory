@@ -1,0 +1,8 @@
+{
+  "synthetic": true,
+  "description": "Hand-authored weekday/week-index arithmetic; no UCI or customer data. Quantiles are artificial constants, not fitted calibration. 182 history rows, 16 interval groups.",
+  "sha256": {
+    "history.csv": "e31fb99389d8940436ba3322cc857378869bb0c0d6ec8803bf727c02cdab0263",
+    "quantiles.csv": "2467060c805a9da49917b6e8421d082e18b7a4cafeb12dcb39eddd2745f22c20"
+  }
+}

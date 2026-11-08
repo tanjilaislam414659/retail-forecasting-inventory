@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools==80.9.0", "wheel==0.45.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "retail-forecasting"
+version = "0.1.0"
+license = "MIT"
+license-files = ["LICENSE", "DATA-LICENSE.md", "licenses/CC-BY-4.0-NOTICE.txt"]
+description = "CPU-friendly retail forecasting and inventory decision support."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = ["numpy==2.3.4", "pandas==2.3.3", "openpyxl==3.1.5", "matplotlib==3.10.7", "scikit-learn==1.7.2"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: Microsoft :: Windows",
+]
+
+[project.scripts]
+retail-forecasting = "retail_forecasting.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

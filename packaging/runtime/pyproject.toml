@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools==80.9.0", "wheel==0.45.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "retail-forecasting-runtime"
+version = "0.1.0"
+license = "MIT"
+license-files = ["LICENSE", "DATA-LICENSE.md", "licenses/CC-BY-4.0-NOTICE.txt"]
+description = "Minimal container runtime for the frozen historical forecasting API."
+readme = "README.md"
+requires-python = ">=3.13,<3.14"
+dependencies = ["numpy==2.3.4", "pandas==2.3.3", "fastapi==0.121.1", "pydantic==2.12.4", "uvicorn==0.38.0"]
+
+[project.scripts]
+retail-forecasting-runtime = "retail_forecasting.deployment.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"retail_forecasting.deployment" = ["*.json"]

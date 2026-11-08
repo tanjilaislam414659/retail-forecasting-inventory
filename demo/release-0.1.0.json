@@ -1,0 +1,117 @@
+{
+  "demo_version": "0.1.0",
+  "created_at_utc": "2026-11-07T18:49:59.268141+00:00",
+  "prior_git_commit": "b931ee621333c76dd1637ef56634f44955f7bec0",
+  "scope": "Presentation engineering only; no forecasting or inventory rules changed",
+  "source_sha256": {
+    "demo/compose.yaml": "ea23e4aa7ee66d9013efec2b0b01f2179f59bdf248b6626d85a0fc7644a5cd3c",
+    "demo/Dockerfile": "dc2c8786e56088731d18baf38c51911501c0d2c3149fb2522b8c3f760a0ec942",
+    "demo/Dockerfile.dockerignore": "88312cb77cc2f6df67f42a73cca3584c66e1abb02d9a233f67124ca7926febd0",
+    "demo/README.md": "4fde922b54c102f434ef583b7c60086850fd69d4b14832e358de38f529db24aa",
+    "docs/milestone-11.md": "b88e1634755e0bbde0795f273d9d934b7ad34e48b2755d91513361acce17d5a4",
+    "packaging/demo/pyproject.toml": "2c1bd00c186e124f500c43eb5830b817db6fcfc821cdfcf0111753e924d14276",
+    "scripts/build_demo_package.py": "e3b4faf50e33fd765d97cbe91ce2fa283582c5bdfa990b35971ce14f50dc4eec",
+    "scripts/package_demo_reports.py": "4e44a69a5a89a729a419c2c894bf728ba37b5dccf4222c47631ed4e15be82b30",
+    "scripts/verify_demo_container.py": "6c2da4644bf0cbd3aab9812f0b67099fa4aeba8948c0638db70c6ce9076857b4",
+    "src/retail_forecasting/demo/__init__.py": "d1d16250f5fefa714bef6bc1a81759a519ed63671429c98116b47e8ec1b8937d",
+    "src/retail_forecasting/demo/__main__.py": "ffd07cbaad502fbe88038ab121a082367d61b6c226d4a4a270d938121efda04e",
+    "src/retail_forecasting/demo/app.py": "bd6ce143f90b14ad00e45316c20da23cef1308b5b7db490a3aef4aef60550933",
+    "src/retail_forecasting/demo/reports/final-test.json": "c5b55572642b457e545d1437ed0a89052896ec96bb98d34fed39d1c6f13beaf3",
+    "src/retail_forecasting/demo/reports/inventory.json": "50e951f34711b318c44c38537f0293057dfbb50ab35f22f75dedc9f6fe10bfdc",
+    "src/retail_forecasting/demo/reports/manifest.json": "e629b35ac92b524df2600e4b85cd247635a86f264bbadb80640dc3d83ae9808e",
+    "src/retail_forecasting/demo/reports/validation.json": "9c783d8d020eb2b5add66fdbaa09999bf405b3772f74a065c6ac423019425c90",
+    "src/retail_forecasting/demo/reports.py": "ae1ccbd6da9fc8846b1d6fa7be6897d857880c518654935aa9441ea056a0c85a",
+    "src/retail_forecasting/demo/static/app.js": "667ff3d911ed60209ba81e6623fe96e48f6a06a703e791cdac25d9ee27478947",
+    "src/retail_forecasting/demo/static/index.html": "3240a822ec801af7d80b40b77784ed361f8450ee6c15397ccd96b2fd25e35e8c",
+    "src/retail_forecasting/demo/static/style.css": "1964d01bb6fb545344f8c8bfc50c445a3184a15db0da4e8196c9f4b45fc2289f",
+    "tests/test_demo.py": "2d2c77c10187065e03b7bdac7c25960f790270a8722d857f71264c545cfa4ae7"
+  },
+  "preserved_input_manifest_sha256": {
+    "service/artifact-contract.json": "d3face306864a3e3c0261e95598bc85505a7a1e0b11c1e4df64515d89f8b4174",
+    "artifacts/runtime/milestone-9-v0.1.0/bundle-manifest.json": "062f9fbeb60b448f80983f08dc59d9b662d43d1de2c29e053b01ad3a9e7b38ac",
+    "data/final_evaluation/manifest.json": "50f9c5db53c0e8ad8e13aed229451dbcf103219c9cfd9cec2c0b84815c02a2e2",
+    "data/inventory_simulation/v0.1.0/manifest.json": "439d77e0eb86a3dcbdbebc4c63182201d62434fc2e77393980c3db318ce38ff9"
+  },
+  "package_sha256": {
+    "dist/demo-release/retail_forecasting_demo-0.1.0-py3-none-any.whl": "00b1ab6525cd59f1f61b3f5cffd7a0d7594738a8b4e8584a72e663544c076459",
+    "dist/demo-release/retail_forecasting_demo-0.1.0.tar.gz": "b6e6453b60ff35209b7102b73ac6af61e101461217658d25ac7926c8fb1b1476"
+  },
+  "local_evidence_sha256": {
+    "reports/generated/demo/docker-smoke-20261107T184518837570Z/results.json": "236683f3c84286f4f517fcc83ecb0b3dfb86cc028ab30b765d3a7cd52532d84e",
+    "reports/generated/demo/checks.json": "55f1d49c41a4af12bae2358a98d59087187aff2e3933424f828e91a4b482d479",
+    "reports/generated/demo/browser-checks.json": "6824b799be185409581b4cd28071c5076b459bfc470db79b12735e1bf8d3afbb",
+    "reports/generated/demo/screenshots/evaluation-desktop.jpg": "cf756ed1e763c3e3e605d68873fde7a29bed889d332624ccd6d8e0fb9f673d50",
+    "reports/generated/demo/screenshots/evaluation-unavailable.jpg": "e69506b59fd9b0354aca986e58e0c49b9573e5e9e0010d2a2e69e7ce7207a4a1",
+    "reports/generated/demo/screenshots/forecast-desktop.jpg": "8a2e25765b53535367028e0f34d6904e9cf48560ec9f59d7a8369a9e9c42aea8",
+    "reports/generated/demo/screenshots/forecast-mobile.jpg": "de6485c710c8e824718bac00d8587e8a2852587194e2442225e716ce91881491",
+    "reports/generated/demo/screenshots/forecast-unavailable.jpg": "401bbf152ef9aec2b52ad91e1dac955e82a172baac7a23ab623cdc0582b0d455",
+    "reports/generated/demo/screenshots/inventory-desktop.jpg": "97827de6cbdadde7f4c65cc401c791adf88ba32ae0c250ef829ab4091adc6a54"
+  },
+  "docker": {
+    "status": "PASS",
+    "image_id": "sha256:8739abed8f1d2baa781a0f22d07620cd48c271cbf77d5c5828c13025c672f6c0",
+    "image_size_bytes": 399961668,
+    "healthy": true,
+    "non_root_uid": 10001,
+    "read_only_runtime_write_rejected": true,
+    "read_only_root": true,
+    "loopback_publication": true,
+    "ready": {
+      "status": "ready",
+      "service_version": "0.1.0",
+      "startup_ms": 798.3022969999638,
+      "forecast_release_id": "weekday-mean-1.0+fcd91ea17928",
+      "error_code": null
+    },
+    "endpoint_checks": [
+      "/",
+      "/health",
+      "/ready",
+      "/metadata",
+      "/demo/assets/app.js",
+      "/demo/assets/style.css",
+      "/demo/api/evaluation",
+      "/demo/api/inventory",
+      "/docs"
+    ],
+    "invalid_requests_rejected": 5,
+    "parity_cases": 6,
+    "dated_predictions": 168,
+    "numeric_values": 840,
+    "maximum_absolute_numeric_difference": 0.0,
+    "rtol": 1e-12,
+    "atol": 1e-09,
+    "forecast_http_ms": {
+      "samples": 6,
+      "minimum": 17.332899995381013,
+      "median": 18.698900006711483,
+      "maximum": 21.273699996527284
+    },
+    "runtime_failure_checks": {
+      "missing": {
+        "ready": {
+          "status": "not_ready",
+          "service_version": "0.1.0",
+          "startup_ms": 111.06238000002122,
+          "forecast_release_id": null,
+          "error_code": "missing_artifact"
+        },
+        "process_start_ms": 1493.7380999908783
+      },
+      "corrupt": {
+        "ready": {
+          "status": "not_ready",
+          "service_version": "0.1.0",
+          "startup_ms": 98.21261199999753,
+          "forecast_release_id": null,
+          "error_code": "checksum_mismatch"
+        },
+        "process_start_ms": 1516.836599999806
+      }
+    },
+    "packaged_saved_report_parity": true,
+    "scope": "Engineering regression only; no evaluation or inventory replay; hosted Actions pending"
+  },
+  "hosted_actions": "pending",
+  "note": "Ignored datasets/runtime/evidence/distributions stay outside Git; local evidence is not required by routine synthetic CI. This manifest excludes itself."
+}

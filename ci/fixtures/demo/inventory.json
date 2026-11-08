@@ -1,0 +1,22 @@
+{
+  "synthetic": true,
+  "evidence": "SYNTHETIC TEST ONLY",
+  "sku_count": 2,
+  "lead_times": [
+    1
+  ],
+  "shortage_penalties": [
+    1
+  ],
+  "scenarios": [
+    {
+      "policy": "static_reference",
+      "lead_time_days": 1,
+      "shortage_cost_per_unit": 1,
+      "fulfilled_unit_rate_pct": 50.0,
+      "unfulfilled_units": 2.0,
+      "average_total_closing_inventory": 1.0,
+      "total_simulated_cost": 3.0
+    }
+  ]
+}

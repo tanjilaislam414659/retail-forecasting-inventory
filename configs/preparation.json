@@ -1,0 +1,16 @@
+{
+  "protocol_version": 1,
+  "locked_before_workbook_inspection": true,
+  "train_start": "2009-12-07",
+  "validation_start": "2011-06-06",
+  "test_start": "2011-09-05",
+  "end_exclusive": "2011-12-05",
+  "max_skus": 100,
+  "minimum_positive_training_weeks": 26,
+  "minimum_training_history_days": 365,
+  "ranking": ["positive_days_desc", "positive_units_desc", "sku_asc"],
+  "weekly_if_median_daily_zero_share_at_least": 0.5,
+  "horizon_days": 28,
+  "extreme_quantity_review_threshold": 1000,
+  "extreme_line_value_gbp_review_threshold": 10000
+}

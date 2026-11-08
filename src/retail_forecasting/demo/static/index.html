@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Retail Forecasting · Historical demo</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/demo/assets/style.css">
+  <script src="/demo/assets/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#forecast" aria-label="Retail Forecasting home"><span class="brand-mark" aria-hidden="true">rf<span>·</span></span><span>Retail Forecasting<small>FROM SALES TO DECISIONS</small></span></a>
+      <nav aria-label="Project views">
+        <a href="#forecast" data-view="forecast" aria-current="page">Forecast explorer</a>
+        <a href="#evaluation" data-view="evaluation">Evaluation</a>
+        <a href="#inventory" data-view="inventory">Inventory simulation</a>
+      </nav>
+      <span id="api-state" class="status-pill checking" role="status">Checking API…</span>
+    </div>
+  </header>
+  <main id="main" tabindex="-1">
+    <section id="view-forecast" aria-labelledby="forecast-heading">
+      <div class="page-intro"><div><p class="eyebrow">01 / EXPLORE THE FORECAST</p><h1 id="forecast-heading">Forecast explorer</h1><p class="subtitle">A clear view of 28 days. Built on a frozen eight-week weekday mean.</p></div><span class="label">Historical demonstration</span></div>
+      <div class="workspace">
+        <div class="primary-column">
+          <form id="forecast-form" class="card controls">
+            <div class="field"><label for="sku">Product SKU</label><select id="sku" name="sku" disabled><option>Loading supported SKUs…</option></select><small>Fixed cohort · 100 products</small></div>
+            <div class="field"><label for="origin">Forecast origin</label><select id="origin" name="origin" disabled><option>Loading historical origins…</option></select><small>Issued before that day's sales</small></div>
+            <button id="load-forecast" type="submit" disabled>Load forecast <span aria-hidden="true">↗</span></button>
+          </form>
+          <div id="forecast-message" class="notice" role="status" aria-live="polite">Loading historical metadata…</div>
+          <div id="forecast-error" class="error-box" role="alert" hidden><h2>Forecast unavailable</h2><p id="forecast-error-text"></p><button id="retry-forecast" type="button" class="secondary">Try again</button></div>
+          <div id="forecast-result" aria-busy="true">
+            <div class="metric-strip">
+              <div class="metric"><span>Forecast horizon</span><strong>28 <small>days</small></strong></div>
+              <div class="metric"><span>History cutoff</span><strong id="cutoff">—</strong></div>
+              <div class="metric"><span>Frequency</span><strong>Daily <small>units</small></strong></div>
+            </div>
+            <article class="card chart-card">
+              <div class="card-heading"><div><h2>Positive-sales forecast</h2><p id="forecast-caption">Choose a product and historical origin.</p></div><span class="small-label">OBSERVED SALES TARGET</span></div>
+              <div class="chart-key" aria-label="Chart legend"><span><i class="key-line"></i>Point forecast</span><span><i class="key-80"></i>80% experimental</span><span><i class="key-95"></i>95% experimental</span></div>
+              <div id="forecast-chart" class="forecast-chart"><p class="empty-state">Your daily forecast will appear here.</p></div>
+              <p class="chart-footnote">Units per day · No target actuals are shown. Exact values are available below.</p>
+            </article>
+            <details class="card data-details"><summary>Daily forecast values <span id="daily-count">28 days</span></summary><div id="forecast-values" class="table-scroll" tabindex="0" aria-label="Daily forecast values, scroll horizontally if needed"></div></details>
+          </div>
+        </div>
+        <aside class="aside-column" aria-label="Forecast context">
+          <article class="card context-card"><span class="card-number">THE FROZEN RELEASE</span><h2>Simple by design.</h2><p>Each target weekday averages its eight previous occurrences. Every input precedes the forecast origin.</p><dl class="release-list"><dt>Point method</dt><dd>Eight-week weekday mean</dd><dt>Release identifier</dt><dd id="release-id" class="mono">Waiting for metadata</dd><dt>Calibration identifier</dt><dd><details><summary>View SHA-256</summary><code id="calibration-id">Waiting for metadata</code></details></dd><dt>Demonstration scope</dt><dd>100 SKUs · 20 historical origins</dd></dl></article>
+          <article class="caution-card"><span class="card-number">READ THE BANDS CAREFULLY</span><h2>Daily, experimental intervals.</h2><p>These are empirical historical-error prediction intervals, not confidence intervals.</p><p>Daily coverage does not guarantee simultaneous coverage across 28 days. <strong>Do not sum daily bounds to obtain a total-horizon interval.</strong></p><p>Coverage varies by SKU and weekday. Availability and uncensored demand are unknown.</p></article>
+        </aside>
+      </div>
+    </section>
+
+    <section id="view-evaluation" aria-labelledby="evaluation-heading" hidden>
+      <div class="page-intro"><div><p class="eyebrow">02 / EXAMINE THE EVIDENCE</p><h1 id="evaluation-heading">Evaluation</h1><p class="subtitle">Saved results, with development and final-test evidence kept distinct.</p></div><span class="label">Read-only results</span></div>
+      <div class="notice">Macro MASE is the primary metric; lower is better. Signed bias = prediction − actual. Overlapping horizons repeat target dates and produce dependent errors.</div>
+      <p id="evaluation-status" role="status" aria-live="polite">Loading saved evaluation results…</p>
+      <div class="evaluation-grid">
+        <article class="card evidence-panel"><div class="evidence-top"><span class="badge development">DEVELOPMENT</span><span class="period">06 Jun – 04 Sep 2011</span></div><h2>Validation</h2><p class="muted">Model development and selection used this period.</p><div id="validation-content"></div></article>
+        <article class="card evidence-panel final-panel"><div class="evidence-top"><span class="badge final">CONSUMED FINAL TEST</span><span class="period">05 Sep – 04 Dec 2011</span></div><h2>Final test</h2><p class="muted">One frozen assessment. This period is already consumed.</p><div id="final-content"></div></article>
+      </div>
+      <article class="card candidate-panel"><div class="card-heading"><div><h2>Validation-only comparisons</h2><p>Fixed recent mean, Ridge and Poisson boosting were assessed during development.</p></div><span class="small-label">NO CANDIDATE FINAL TEST</span></div><div id="candidate-content"></div><p class="chart-footnote">Changing class and loss together does not isolate the cause of any model difference. Weekday mean remains the selected point forecaster.</p></article>
+      <div class="notice neutral">Each method has 28,000 origin-specific instances per period, representing 9,100 unique SKU/target-date pairs. Row count is not an independent sample size. No statistical-significance claim follows from it.</div>
+    </section>
+
+    <section id="view-inventory" aria-labelledby="inventory-heading" hidden>
+      <div class="page-intro"><div><p class="eyebrow">03 / EXPLORE THE TRADE-OFF</p><h1 id="inventory-heading">Inventory simulation</h1><p class="subtitle">A bounded replay of validation sales under fixed inventory assumptions.</p></div><span class="label scenario-label">Synthetic scenario</span></div>
+      <div class="notice warning"><strong>Simulated outcomes, not real business savings.</strong> Observed sales are scenario inputs, not verified uncensored demand. These controls display saved comparisons; they do not optimize or rerun policies.</div>
+      <div id="inventory-status" role="status" aria-live="polite">Loading saved inventory scenarios…</div>
+      <div id="inventory-content" hidden>
+        <div class="scenario-bar card"><div class="field"><label for="lead-time">Synthetic lead time</label><select id="lead-time"><option value="1">1 calendar day</option><option value="3" selected>3 calendar days</option><option value="7">7 calendar days</option></select></div><div class="field"><label for="penalty">Shortage penalty</label><select id="penalty"><option value="1" selected>1 cost unit / lost unit</option><option value="5">5 cost units / lost unit</option></select></div><p>Holding: <strong>0.01</strong> per closing unit/day<br>Setup: <strong>1</strong> per positive SKU order</p></div>
+        <div class="metric-strip"><div class="metric"><span>Replayed scenario units</span><strong>246,299</strong></div><div class="metric"><span>Validation replay</span><strong>91 <small>days</small></strong></div><div class="metric"><span>Product cohort</span><strong>100 <small>SKUs</small></strong></div></div>
+        <div class="inventory-grid"><article class="card"><div class="card-heading"><div><h2>Service and stock</h2><p>More stock can reduce lost units under these assumptions.</p></div></div><div id="inventory-chart" class="inventory-chart"></div></article><article class="card"><div class="card-heading"><div><h2>Simulated total cost</h2><p>Synthetic cost units · holding + shortages + setup</p></div></div><div id="cost-bars" class="cost-bars"></div></article></div>
+        <article class="card"><div class="card-heading"><div><h2>Three fixed policies</h2><p id="scenario-caption"></p></div><span class="small-label">SAVED COMPARISON</span></div><div id="inventory-table" class="table-scroll" tabindex="0" aria-label="Policy comparison, scroll horizontally if needed"></div></article>
+        <details class="card assumptions" open><summary>Scenario assumptions and limits</summary><ul id="assumption-list"></ul><p>No purchasing cost, salvage credit or calibrated lead-time interval is included. Uniform costs across heterogeneous SKU units are simplifying assumptions. The consumed final test was not used for this simulation.</p></details>
+      </div>
+    </section>
+  </main>
+  <footer><div><strong>Public data. Explicit limits.</strong><p>Chen, D. (2012), <a href="https://doi.org/10.24432/C5CG6D" target="_blank" rel="noopener noreferrer">UCI Online Retail II</a> · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>. Audited, aggregated positive sales; no customer identifiers in forecasts.</p><p>Historical research demonstration · Observed sales are not latent demand · Not production-ready.</p></div><span class="footer-version">DEMO 0.1.0<br>API 0.1.0</span></footer>
+  <noscript><p class="error-box">JavaScript is required for the charts and API requests. The existing API remains available at <a href="/docs">/docs</a>.</p></noscript>
+</body>
+</html>

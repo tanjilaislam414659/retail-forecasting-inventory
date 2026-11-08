@@ -1,0 +1,49 @@
+name: Synthetic Python package checks
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  synthetic-tests-and-package:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    strategy:
+      matrix:
+        package: [runtime, demo]
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c # v6.0.0
+        with:
+          python-version: '3.13.18'
+      - name: Install hashed Linux CI dependencies
+        run: >-
+          python -m pip install --only-binary=:all: --require-hashes -r deployment/requirements-ci-linux.lock
+      - name: Build minimal runtime wheel and source distribution
+        if: matrix.package == 'runtime'
+        run: python scripts/build_runtime_package.py --output dist/runtime
+      - name: Build demo wheel and source distribution
+        if: matrix.package == 'demo'
+        run: python scripts/build_demo_package.py --output dist/demo
+      - name: Install built package
+        run: python -m pip install --no-deps dist/${{ matrix.package }}/*.whl
+      - name: Verify dependency consistency
+        run: python -m pip check
+      - name: Synthetic unit and API tests (no datasets, no skipped tests)
+        run: python ci/run_tests.py --package ${{ matrix.package }}
+      - name: Validate workflow and container configuration statically
+        run: python scripts/validate_packaging.py
+      - name: Verify installed package contents
+        if: matrix.package == 'runtime'
+        run: python ci/check_installed_package.py
+      - name: Verify installed demo assets and inference identity
+        if: matrix.package == 'demo'
+        run: python ci/check_installed_demo.py
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: ${{ matrix.package }}-python-distributions
+          path: dist/${{ matrix.package }}/*
+          if-no-files-found: error

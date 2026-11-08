@@ -1,0 +1,63 @@
+{
+  "recorded_at_utc": "2026-11-04T20:16:24.860476+00:00",
+  "component": "validation inventory-policy simulation",
+  "version": "0.1.0",
+  "scope": "Synthetic scenario assumptions, observed positive-sales replay, development validation only; no real business savings or held-out assessment",
+  "specification_record_sha256": "5db2e7cbc26f1959b4db9b54c505310e9d0244619422fe24ec2a9e2bc1d5da24",
+  "simulation_manifest_sha256": "439d77e0eb86a3dcbdbebc4c63182201d62434fc2e77393980c3db318ce38ff9",
+  "source_sha256": {
+    "configs/inventory-simulation.json": "ec0ffbb7278667666740e3d667ad6a57d49ec3122c34299825e40a1ed952f4a9",
+    "docs/inventory-simulation-spec.md": "092cc4f1ca36e4e66fb734fb9f33c140d68e045780a79105d457c7ae87d6997e",
+    "docs/milestone-10.md": "d3bd1a1124da7a4cc8e7f932242e124a3f898f257025b5e20b982a4e4c4e5729",
+    "inventory/README.md": "af3ec427bb16dd3f8f08c4e2be56da3a8deffb44d296e8eee3300131b7d1f9c3",
+    "scripts/preflight_inventory.py": "fb72c7a7d66f7935cf902fb74348b1148e9959ae8b211e6bc227bb30c1f16a61",
+    "scripts/validate_inventory.py": "b3f5d3865f84885a25612597767414dd6cc5211e24a080c097002740856f1880",
+    "src/retail_forecasting/inventory/__init__.py": "b15c8ea4d2c209a7f62a8173973012f6aa4ae68ada1c84ea3046116ff9d381f1",
+    "src/retail_forecasting/inventory/__main__.py": "b20f0d965cb6307c5ac8f95cded0fa9442ae6f41f5e05ea64563a2565ed94f85",
+    "src/retail_forecasting/inventory/experiment.py": "d3dde86d074c37651368bca178a90af730b5fb368330c6e4f169dc75d3dba785",
+    "src/retail_forecasting/inventory/reporting.py": "bdfc700d43474a575c00928bc806ade473b9a6d42734d2dbbaabe2a2ed56eb65",
+    "src/retail_forecasting/inventory/simulation.py": "849d127798e30a7ed9fef8b7902e305521790171a6b9816933674a608aebba6c",
+    "tests/test_inventory.py": "5ad6f15782af987a3af35317c63700ab73676a1661d60c13daac76b3c65f3b72"
+  },
+  "input_sha256": {
+    "data/baselines/modelling_history.csv.gz": "a9c123f7cd417c2b359cf7df0af3fa9ec09718a954643ef4844b4cde5f01bf91",
+    "data/baselines/validation_forecasts.csv.gz": "52cc65d75a55f6fa8c7e78fbc541ab4bc96c8b34627fa2f08fd86119821260b8",
+    "data/processed/sku_selection.csv": "3d2a083f34bddffc50a15c5289c0509b72d8133e598b2fd7fbd1b30241cab79a"
+  },
+  "prior_artifacts_protected": 321,
+  "actual_counts": {
+    "sku_count": 100,
+    "unique_sku_date_inputs": 9100,
+    "observed_positive_sales_units_per_physical_alternative": 246299,
+    "physical_trajectories": 900,
+    "ledger_rows": 81900,
+    "order_rows": 10107,
+    "economic_sku_rows": 1800,
+    "aggregate_scenario_rows": 18
+  },
+  "checks": {
+    "verified_at_utc": "2026-11-04T20:14:20.910307+00:00",
+    "tests_passed": 15,
+    "tests_failed": 0,
+    "synthetic_full_preflight": "PASS",
+    "independent_saved_ledger_decision_cost_validation": "PASS",
+    "completed_repeat_with_execute_and_CSV_parsing_blocked": "PASS",
+    "manifest_and_all_output_bytes_unchanged_on_repeat": true,
+    "source_spec_input_and_321_prior_artifact_hashes": "PASS",
+    "actual_physical_scenario_replay_runs": 1,
+    "no_final_test_sales_loaded": true,
+    "no_forecast_retraining_or_recalibration": true,
+    "original_simulation_manifest_sha256": "439d77e0eb86a3dcbdbebc4c63182201d62434fc2e77393980c3db318ce38ff9"
+  },
+  "verification_sha256": "0798040b95c9f4bc32304925e1f2b4f8aba2fc724a4ef351c564b8aaf665f68b",
+  "no_retraining_recalibration_or_final_evaluation": true,
+  "interval_bounds_used": false,
+  "publication": false,
+  "limitations": [
+    "Observed sales not verified uncensored demand",
+    "Frozen exogenous forecasts, not feedback from simulated fulfilled sales",
+    "Aged final forecasts and explicit terminal truncation",
+    "Synthetic initial stock/costs and simplified constraints; initial stock rises with lead time",
+    "Uniform unit costs across heterogeneous SKUs; no business savings claim"
+  ]
+}

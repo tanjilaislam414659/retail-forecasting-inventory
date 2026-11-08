@@ -1,0 +1,43 @@
+# Local agent configuration and credentials
+.codex/
+.agents/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Python environments, caches, and packaging
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+build/
+dist/
+.cache/
+
+# Data and generated artifacts: keep only documentation
+/data/*
+!/data/README.md
+/models/
+/artifacts/
+/reports/generated/
+*.log
+
+# Editor / operating system files
+.vscode/
+.idea/
+.ipynb_checkpoints/
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Local publication tools, attachments and verification workspaces
+.tools/
+.release/

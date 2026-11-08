@@ -1,0 +1,116 @@
+{
+  "release": "1.0; offline observed-positive-sales forecasts",
+  "selected_model": "weekday_mean",
+  "fixed_reference": "seasonal_naive",
+  "model_selection_from_final_test": false,
+  "cohort_size": 100,
+  "frequency": "D",
+  "horizon_days": 28,
+  "origins": [
+    "2011-09-05",
+    "2011-09-12",
+    "2011-09-19",
+    "2011-09-26",
+    "2011-10-03",
+    "2011-10-10",
+    "2011-10-17",
+    "2011-10-24",
+    "2011-10-31",
+    "2011-11-07"
+  ],
+  "calibration_target_end_exclusive": "2011-06-06",
+  "target_end_exclusive": "2011-12-05",
+  "instances_per_point_method": 28000,
+  "unique_sku_target_pairs": 9100,
+  "history_policy": "strictly before origin; refresh observed history; no refit or calibration update",
+  "history_mask": "existing training-only modelling_start; excludes 484 leading rows across 10 SKUs; SKU 21166 starts 2009-12-07",
+  "scale_source": "data/baselines/history_and_scales.csv",
+  "calibration_source": "data/uncertainty/calibration_quantiles.csv",
+  "uncertainty_label": "experimental empirical historical-error daily prediction intervals",
+  "interval_levels": [
+    80,
+    95
+  ],
+  "interval_rule": "max(0, point + original-training SKU/horizon-week residual quantile); no rounding or forced point containment",
+  "primary_point_metric": "macro_mase",
+  "secondary_point_metrics": [
+    "mae",
+    "wape_pct",
+    "mean_bias_units",
+    "bias_pct"
+  ],
+  "bias_sign": "prediction minus actual",
+  "point_groups": {
+    "by_model": [
+      "model"
+    ],
+    "by_sku": [
+      "model",
+      "sku"
+    ],
+    "by_origin": [
+      "model",
+      "origin"
+    ],
+    "by_horizon_week": [
+      "model",
+      "horizon_week"
+    ]
+  },
+  "interval_groups": {
+    "overall": [
+      "level"
+    ],
+    "by_sku": [
+      "level",
+      "sku"
+    ],
+    "by_horizon_week": [
+      "level",
+      "horizon_week"
+    ],
+    "by_target_weekday": [
+      "level",
+      "target_weekday"
+    ],
+    "by_origin": [
+      "level",
+      "origin"
+    ]
+  },
+  "zero_denominators": "WAPE/relative bias undefined if zero actual total; any zero training scale makes macro MASE undefined; no epsilon or dropped products",
+  "missing_intervals": "explicit missing counts; aggregate coverage/width/score undefined if any missing; no substitution",
+  "coverage_endpoints_inclusive": true,
+  "interval_score": "width + 2/alpha times distance outside bounds; alpha=0.20 or 0.05",
+  "sku_comparison": "MASE weekday_mean versus fixed seasonal_naive; tie absolute difference <=1e-10; descriptive only",
+  "diagnostic_groups": [
+    "zero_actual",
+    "positive_actual",
+    "Saturday"
+  ],
+  "plot_rule": {
+    "training_volume_ranks": [
+      1,
+      50,
+      100
+    ],
+    "tie_break": "SKU ascending",
+    "origin": "2011-11-07",
+    "past_days": 28,
+    "coverage_plots": [
+      "horizon_week",
+      "target_weekday"
+    ]
+  },
+  "dependence": "28000 origin-specific instances repeat 9100 SKU/date pairs; overlapping horizons/histories dependent; no independent-sample significance claims",
+  "no_aggregate_uncertainty_claim": true,
+  "repeat_policy": "verify complete saved artifacts and report; refuse overwrite or reevaluation; incomplete started runs require explicit documented defect handling",
+  "known_validation_limitations": [
+    "weekday mean macro MASE 0.7581087857; WAPE 97.17603956%; substantial absolute error",
+    "80%/95% overall coverage 83.88571429%/95.44642857% masks Thursday coverage 69.275%/88.90%",
+    "26/33 SKUs below nominal 80%/95%; minima 57.142857%/78.214286%",
+    "95% mean width 149.70915324 units; wide bands do not demonstrate inventory value",
+    "pooled weekdays, overlapping residuals and serial dependence; distribution-shift risk",
+    "observed sales are not uncensored demand or verified availability; no aggregate/joint coverage guarantee"
+  ]
+}

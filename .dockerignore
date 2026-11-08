@@ -1,0 +1,26 @@
+# Default deny. Environments, caches, secrets, research data and reports never enter context.
+**
+!Dockerfile
+!.dockerignore
+!packaging/
+!packaging/runtime/
+!packaging/runtime/pyproject.toml
+!deployment/
+!deployment/README.md
+!deployment/requirements-build-linux.lock
+!deployment/requirements-runtime-linux.lock
+!src/
+!src/retail_forecasting/
+!src/retail_forecasting/__init__.py
+!src/retail_forecasting/baselines.py
+!src/retail_forecasting/uncertainty.py
+!src/retail_forecasting/service/
+!src/retail_forecasting/service/*.py
+!src/retail_forecasting/deployment/
+!src/retail_forecasting/deployment/*.py
+!src/retail_forecasting/deployment/runtime-code.json
+
+!LICENSE
+!DATA-LICENSE.md
+!licenses/
+!licenses/CC-BY-4.0-NOTICE.txt

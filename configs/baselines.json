@@ -1,0 +1,16 @@
+{
+  "protocol_version": 1,
+  "models": ["seasonal_naive", "recent_mean", "weekday_mean"],
+  "seasonal_period_days": 7,
+  "recent_mean_days": 28,
+  "weekday_mean_occurrences": 8,
+  "horizon_days": 28,
+  "origins": [
+    "2011-06-06", "2011-06-13", "2011-06-20", "2011-06-27",
+    "2011-07-04", "2011-07-11", "2011-07-18", "2011-07-25",
+    "2011-08-01", "2011-08-08"
+  ],
+  "mase_scales": "original training dates only, excluding dates before first qualifying positive sale",
+  "plot_selection": "training positive-unit ranks 1, 50, 100; ties by SKU ascending",
+  "plot_origin": "2011-08-08"
+}

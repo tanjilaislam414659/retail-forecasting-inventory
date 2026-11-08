@@ -1,0 +1,17 @@
+sku,horizon_week,level,alpha,lower_residual_quantile,upper_residual_quantile,calibration_status
+SYNTHETIC_A,1,80,0.2,-2,3,defined
+SYNTHETIC_A,1,95,0.05,-4,7,defined
+SYNTHETIC_A,2,80,0.2,-2,3,defined
+SYNTHETIC_A,2,95,0.05,-4,7,defined
+SYNTHETIC_A,3,80,0.2,-2,3,defined
+SYNTHETIC_A,3,95,0.05,-4,7,defined
+SYNTHETIC_A,4,80,0.2,-2,3,defined
+SYNTHETIC_A,4,95,0.05,-4,7,defined
+SYNTHETIC_B,1,80,0.2,-2,3,defined
+SYNTHETIC_B,1,95,0.05,-4,7,defined
+SYNTHETIC_B,2,80,0.2,-2,3,defined
+SYNTHETIC_B,2,95,0.05,-4,7,defined
+SYNTHETIC_B,3,80,0.2,-2,3,defined
+SYNTHETIC_B,3,95,0.05,-4,7,defined
+SYNTHETIC_B,4,80,0.2,-2,3,defined
+SYNTHETIC_B,4,95,0.05,-4,7,defined

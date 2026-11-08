@@ -1,0 +1,13 @@
+{
+  "service_contract_sha256": "d3face306864a3e3c0261e95598bc85505a7a1e0b11c1e4df64515d89f8b4174",
+  "installed_module_sha256": {
+    "retail_forecasting.baselines": "2ecf368a994259b4f63ae996abe53427eee7d5664a471000506942a0c259561c",
+    "retail_forecasting.uncertainty": "6627d097d4f659201848718429e0c079a3c257c8d4d4b70a72a4251b063c82d2",
+    "retail_forecasting.service.__main__": "c5c2d4efd93d8d9d8af161f2567c550a01bac82aea9352d0cd1b1c03eb9f784c",
+    "retail_forecasting.service.app": "c57a763ebbadf33c663cae084dba7a44373c3decd64cf30bbb34a7de857274d1",
+    "retail_forecasting.service.artifacts": "c2fb74687f6801b6cec7e9bd711d0931d638cfd37016e6b9a3c4db503dcaf7b9",
+    "retail_forecasting.service.inference": "c5a177d6f9be4e4dce4cfe2d3691e1c53c093b961240f5b5ba1803247f321da4",
+    "retail_forecasting.service.schemas": "47fea62b02f6d8f87ff2290562619f73b16b6df0fcf28b64fde34f19fa710207",
+    "retail_forecasting.service": "1fcde82d31e955135829f76c988be4f8e151b206343ebca8f952e99d880b9592"
+  }
+}

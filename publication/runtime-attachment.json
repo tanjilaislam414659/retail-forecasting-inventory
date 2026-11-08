@@ -1,0 +1,12 @@
+{
+  "runtime_zip": "retail-forecasting-runtime-v0.1.0.zip",
+  "bytes": 339046,
+  "sha256": "f9dfddfc9dfc7d0bf3ed8406bd28951e409a94fd49dfee63af1772fea87871c1",
+  "original_prepared_zip_sha256": "028c006c307d875c24e94f7bacc55a4df01601542ea6ae16f7dbe5d891f71c44",
+  "original_runtime_members_identical": true,
+  "added_notice_files": [
+    "LICENSE",
+    "DATA-LICENSE.md",
+    "licenses/CC-BY-4.0-NOTICE.txt"
+  ]
+}

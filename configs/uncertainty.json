@@ -1,0 +1,31 @@
+{
+  "experiment_id": "weekday-mean-historical-error-intervals-v1",
+  "recorded_before_calculation_at_utc": "2026-11-01T19:49:57Z",
+  "point_forecaster": "weekday_mean; frozen first release",
+  "calibration_grid": "exact saved original-training Ridge SKU/origin/horizon grid",
+  "calibration_target_end_exclusive": "2011-06-06",
+  "required_history_days": 56,
+  "residual_definition": "actual_sales - point_prediction; opposite sign to signed-bias metric",
+  "group_columns": ["sku", "horizon_week"],
+  "weekday_pooling": "all target weekdays pooled within each SKU/horizon-week group",
+  "quantile_method": "linear",
+  "levels": [
+    {"level": 80, "alpha": 0.2, "lower_probability": 0.1, "upper_probability": 0.9},
+    {"level": 95, "alpha": 0.05, "lower_probability": 0.025, "upper_probability": 0.975}
+  ],
+  "bounds": "lower=max(0,point+lower_quantile); upper=max(0,point+upper_quantile)",
+  "rounding": false,
+  "force_point_inside": false,
+  "weekday_specific_rule": false,
+  "missing_group_policy": "explicit missing status and counts, no substitution; affected aggregate coverage/width/score undefined",
+  "coverage": "inclusive lower <= actual <= upper",
+  "interval_score": "width + (2/alpha)*(lower-actual) if below + (2/alpha)*(actual-upper) if above",
+  "validation_points": "unchanged saved weekday_mean predictions; 28000 per level",
+  "validation_origins": ["2011-06-06", "2011-06-13", "2011-06-20", "2011-06-27", "2011-07-04", "2011-07-11", "2011-07-18", "2011-07-25", "2011-08-01", "2011-08-08"],
+  "horizon_days": 28,
+  "calibration_updates_on_validation": false,
+  "method_adjustments_after_coverage": false,
+  "interpretation": "empirical historical-error daily prediction intervals; development evidence, no conformal or finite-sample guarantees",
+  "aggregate_uncertainty": "not estimated; never sum daily bounds and call them calibrated total-sales intervals",
+  "plot_selection": "same original training-volume ranks 1,50,100; SKU tie ascending; origin 2011-08-08"
+}

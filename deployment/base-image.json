@@ -1,0 +1,13 @@
+{
+  "resolved_at_utc": "2026-11-04T18:16:30.266655+00:00",
+  "official_repository": "docker.io/library/python",
+  "requested_tag": "3.13-slim-trixie",
+  "python_version": "3.13.18",
+  "resolved_version_tag": "3.13.18-slim-trixie",
+  "index_digest": "sha256:ae14d4ce8771606477a81446e7ef429edd6762305fc50c84507c1041fa8285d1",
+  "linux_amd64_manifest_digest": "sha256:aaf08c5490d52cd92bc27142a5215b1e47355a5eaf9adfad2a0fbc022d0b5490",
+  "config_digest": "sha256:bdfc738a8a869292ec1b01f1b8e620db533e09d1fe68fe980a7118b22dae9cec",
+  "platform": "linux/amd64",
+  "source": "Docker Hub official library/python registry API; anonymous manifest/config metadata only",
+  "note": "No image pulled or container executed by this resolver."
+}
