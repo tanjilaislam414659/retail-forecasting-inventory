@@ -1,5 +1,9 @@
 name: Published release verification
-on:
+"on":
+  push:
+    paths:
+      - '.github/workflows/release-verification.yml'
+      - 'publication/verify_downloaded_release.py'
   workflow_dispatch:
 permissions:
   contents: read
