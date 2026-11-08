@@ -1,5 +1,9 @@
 # Retail Forecasting and Inventory Decision Support
 
+[![Synthetic package checks](https://github.com/tanjilaislam414659/retail-forecasting-inventory/actions/workflows/ci.yml/badge.svg)](https://github.com/tanjilaislam414659/retail-forecasting-inventory/actions/workflows/ci.yml)
+
+**[Release v0.1.0](https://github.com/tanjilaislam414659/retail-forecasting-inventory/releases/tag/v0.1.0)** · [Runtime ZIP](https://github.com/tanjilaislam414659/retail-forecasting-inventory/releases/download/v0.1.0/retail-forecasting-runtime-v0.1.0.zip) · [SHA-256 checksums](https://github.com/tanjilaislam414659/retail-forecasting-inventory/releases/download/v0.1.0/SHA256SUMS.txt)
+
 A reproducible **historical demonstration** of retail forecasting, experimental
 uncertainty and inventory-policy trade-offs, built with Python, scikit-learn,
 FastAPI and Docker on CPU. Development was AI-assisted; claims are tied to saved
@@ -72,7 +76,19 @@ historical forecast explorer, extract the separately verified bundle and run:
 .\.venv\Scripts\python.exe -m retail_forecasting.demo --root artifacts/runtime/milestone-9-v0.1.0 --runtime-bundle --port 8000
 ```
 
-The attributed runtime ZIP will be attached after the first hosted CI run passes. [Bundle/extraction/raw-acquisition instructions](publication/runtime-bundle.md)
+The attributed runtime ZIP is published with [v0.1.0](https://github.com/tanjilaislam414659/retail-forecasting-inventory/releases/tag/v0.1.0).
+Download and verify it before enabling forecasts: ```powershell
+New-Item -ItemType Directory -Force artifacts/downloads, artifacts/runtime | Out-Null
+$release = "https://github.com/tanjilaislam414659/retail-forecasting-inventory/releases/download/v0.1.0"
+Invoke-WebRequest "$release/retail-forecasting-runtime-v0.1.0.zip" -OutFile artifacts/downloads/runtime.zip
+Invoke-WebRequest "$release/SHA256SUMS.txt" -OutFile artifacts/downloads/SHA256SUMS.txt
+$expected = (Get-Content publication/runtime-attachment.json -Raw | ConvertFrom-Json).sha256
+$actual = (Get-FileHash artifacts/downloads/runtime.zip -Algorithm SHA256).Hash.ToLower()
+if ($actual -ne $expected) { throw "Runtime ZIP checksum mismatch" }
+Expand-Archive artifacts/downloads/runtime.zip artifacts/runtime
+```
+
+[Bundle/extraction/raw-acquisition instructions](publication/runtime-bundle.md)
 explain both routes. A raw workbook download alone does not recreate the calibrated
 release. Do not rerun the consumed final test merely to start the demo.
 
@@ -184,7 +200,9 @@ Runtime/demo distributions are tested in separate environments.
 ```
 
 Full-data integration/saved-output parity are separate opt-in regression checks,
-not new evaluations. Hosted GitHub Actions is **pending**, not claimed successful.
+not new evaluations. Hosted GitHub Actions [passed for the first release](https://github.com/tanjilaislam414659/retail-forecasting-inventory/actions/runs/42471989911):
+16 runtime and 24 demo synthetic tests (16 common tests), zero unit-test skips.
+Package-specific conditional workflow steps are expected to skip in the other matrix job.
 Clean-checkout and publication/history check evidence: [Milestone 12](docs/milestone-12.md).
 
 ## Data, licensing and scope

@@ -18,8 +18,7 @@ Full-data integration/parity lives separately in `scripts/verify_runtime_bundle.
 and `scripts/verify_service_parity.py`. Actual Docker checks require Docker/daemon
 and `scripts/verify_container.py`. Routine Actions intentionally does not execute
 the dataset-dependent `tests/test_service.py` or the full research test suite;
-these are not silently skipped by discovery. Hosted execution is pending until
-the user publishes/runs the prepared workflow.
+these are not silently skipped by discovery. Hosted runtime/demo checks passed for the public release; see the root README.
 # Milestone 12 update
 
 Routine CI now has separate **runtime** and **demo** matrix environments. Run
@@ -35,4 +34,4 @@ and unchanged inference code identities. `ci/check_installed_package.py` retains
 the original runtime-wheel check. These distributions overlap in their Python
 namespace and are installed in separate environments, not on top of one another.
 Local clean-clone evidence and scope are in `docs/milestone-12.md`; hosted GitHub
-Actions execution remains pending.
+Actions passed: https://github.com/tanjilaislam414659/retail-forecasting-inventory/actions/runs/42471989911.

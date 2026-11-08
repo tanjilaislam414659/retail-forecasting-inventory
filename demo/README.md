@@ -103,6 +103,6 @@ Full-data interface/API regression checks (no new performance evaluation):
 ```
 
 `ci/run_tests.py` remains the separate, dataset-free synthetic core/API suite.
-The existing hosted workflow is unchanged and has not been executed on GitHub.
+The public release has passing runtime/demo matrix checks: https://github.com/tanjilaislam414659/retail-forecasting-inventory/actions/runs/42471989911.
 No publication, model work, final evaluation or inventory replay is part of this
-interface milestone. Hosted Actions remains pending.
+interface milestone. Hosted Actions passed; public release downloads are linked from the root README.

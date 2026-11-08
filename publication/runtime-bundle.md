@@ -20,11 +20,14 @@ original research workspace, the existing explicit copy-only exporter is:
 It verifies/reuses matching existing artifacts and never trains or regenerates
 them. It cannot reconstruct missing calibration from a raw data download.
 
-The release attachment is `retail-forecasting-runtime-v0.1.0.zip`; download links
-are added after CI passes and the release is published. It includes the unchanged
-frozen bundle directory plus MIT/CC BY 4.0 notices alongside it. The original ZIP
-and every frozen runtime member remain unchanged in the original workspace.
-Its publication ZIP hash differs only because license notices were added.
+Download [runtime ZIP](https://github.com/tanjilaislam414659/retail-forecasting-inventory/releases/download/v0.1.0/retail-forecasting-runtime-v0.1.0.zip)
+and [SHA256SUMS.txt](https://github.com/tanjilaislam414659/retail-forecasting-inventory/releases/download/v0.1.0/SHA256SUMS.txt)
+from [v0.1.0](https://github.com/tanjilaislam414659/retail-forecasting-inventory/releases/tag/v0.1.0).
+The SHA-256 is `f9dfddfc9dfc7d0bf3ed8406bd28951e409a94fd49dfee63af1772fea87871c1`
+(339,046 bytes). The release ZIP adds MIT/CC BY 4.0 notices outside the original
+frozen bundle directory. All original runtime members are byte-identical; the
+original prepared ZIP remains preserved separately and has its original hash.
+The committed `publication/runtime-attachment.json` provides the publication hash.
 
 Before extracting a supplied ZIP, compare `Get-FileHash -Algorithm SHA256` with
 the separately supplied checksum. Extract only a trusted, verified attachment:

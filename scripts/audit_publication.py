@@ -96,7 +96,7 @@ def main():
         "secret_pattern_findings": findings, "forbidden_history_paths": denied_paths,
         "explicitly_reviewed_test_literals": reviewed_literals,
         "historical_local_path_blobs": local_path_blobs, "broken_document_links": broken,
-        "required_ignore_examples_passed": len(candidates), "commit_author_emails_all_localhost": all(a.endswith("@localhost") for a in authors),
+        "required_ignore_examples_passed": len(candidates), "commit_author_emails_all_github_noreply": all(a.endswith("@users.noreply.github.com") for a in authors),
         "license_file_present": any(PurePosixPath(p).name.upper() in {"LICENSE", "LICENSE.MD", "LICENSE.TXT", "COPYING"} for p in tracked),
         "only_tracked_csv_schemas": "Explicit synthetic SKU histories and handcrafted quantiles; no customer identifiers",
         "limitations": "Heuristic secret-pattern/path audit of reachable Git history, plus schema/fixture review; not a proof that arbitrary encoded secrets cannot exist. Ignored personal files/credentials are not inspected. Working-copy additions must be committed before final audit."}
