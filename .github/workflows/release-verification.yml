@@ -1,0 +1,32 @@
+name: Published release verification
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  anonymous-download-and-inference:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.13.18'
+      - name: Install hashed package-check dependencies
+        run: python -m pip install --only-binary=:all: --require-hashes -r deployment/requirements-ci-linux.lock
+      - name: Build and install demo distribution
+        run: |
+          python scripts/build_demo_package.py --output dist/demo
+          python -m pip install --no-deps dist/demo/*.whl
+          python -m pip check
+      - name: Download public release anonymously and verify inference
+        run: python publication/verify_downloaded_release.py
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: published-release-verification
+          path: |
+            artifacts/release-verification.json
+            artifacts/release-smoke.log
+          if-no-files-found: error
