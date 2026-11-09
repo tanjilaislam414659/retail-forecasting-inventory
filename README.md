@@ -2,15 +2,15 @@
 
 [![Synthetic package checks](https://github.com/tanjilaislam414659/retail-forecasting-inventory/actions/workflows/ci.yml/badge.svg)](https://github.com/tanjilaislam414659/retail-forecasting-inventory/actions/workflows/ci.yml)
 
-**[Release v0.1.0](https://github.com/tanjilaislam414659/retail-forecasting-inventory/releases/tag/v0.1.0)** · [Runtime ZIP](https://github.com/tanjilaislam414659/retail-forecasting-inventory/releases/download/v0.1.0/retail-forecasting-runtime-v0.1.0.zip) · [SHA-256 checksums](https://github.com/tanjilaislam414659/retail-forecasting-inventory/releases/download/v0.1.0/SHA256SUMS.txt)
+**[Release v0.1.0](https://github.com/tanjilaislam414659/retail-forecasting-inventory/releases/tag/v0.1.0)** | [Runtime ZIP](https://github.com/tanjilaislam414659/retail-forecasting-inventory/releases/download/v0.1.0/retail-forecasting-runtime-v0.1.0.zip) | [SHA-256 checksums](https://github.com/tanjilaislam414659/retail-forecasting-inventory/releases/download/v0.1.0/SHA256SUMS.txt)
 
 A reproducible **historical demonstration** of retail forecasting, experimental
 uncertainty and inventory-policy trade-offs, built with Python, scikit-learn,
 FastAPI and Docker on CPU. Development was AI-assisted; claims are tied to saved
 results, including experiments where more complex models lost to a simple baseline.
 
-**Frozen forecaster:** eight-week weekday mean Â· 100 SKUs Â· daily observed positive
-sales Â· 28-day horizon Â· 20 supported 2011 origins. This is not a live retail feed,
+**Frozen forecaster:** eight-week weekday mean | 100 SKUs | daily observed positive
+sales | 28-day horizon | 20 supported 2011 origins. This is not a live retail feed,
 uncensored-demand estimate or claim of real business savings. Final test is consumed.
 
 ## Explore the demonstration
@@ -46,7 +46,7 @@ recalibrate or regenerate evaluation/simulation outputs. Inference computes from
 pre-origin history; it does not look up saved evaluation forecasts. Reporting
 uses small saved aggregate copies.
 
-## Quick start â€” Windows / PowerShell
+## Quick start: Windows / PowerShell
 
 From the repository root, use **CPython 3.13**. Windows checks used 3.13.5; Linux
 Docker/CI is pinned to 3.13.18. If `py` is unavailable, use an installed 3.13
@@ -77,7 +77,9 @@ historical forecast explorer, extract the separately verified bundle and run:
 ```
 
 The attributed runtime ZIP is published with [v0.1.0](https://github.com/tanjilaislam414659/retail-forecasting-inventory/releases/tag/v0.1.0).
-Download and verify it before enabling forecasts: ```powershell
+Download and verify it before enabling forecasts:
+
+```powershell
 New-Item -ItemType Directory -Force artifacts/downloads, artifacts/runtime | Out-Null
 $release = "https://github.com/tanjilaislam414659/retail-forecasting-inventory/releases/download/v0.1.0"
 Invoke-WebRequest "$release/retail-forecasting-runtime-v0.1.0.zip" -OutFile artifacts/downloads/runtime.zip
@@ -92,7 +94,7 @@ Expand-Archive artifacts/downloads/runtime.zip artifacts/runtime
 explain both routes. A raw workbook download alone does not recreate the calibrated
 release. Do not rerun the consumed final test merely to start the demo.
 
-## Quick start â€” Docker
+## Quick start: Docker
 
 Requires Docker Desktop with Linux/amd64 containers and the verified extracted
 bundle at `artifacts/runtime/milestone-9-v0.1.0`:
@@ -119,18 +121,18 @@ cross-sheet copies**. Repeated-looking transactions and wholesale extremes were
 retained; returns/adjustments were separated from positive sales. Training data
 selected the 100-SKU cohort and daily frequency. The pre-observation history mask
 is an explicit modelling assumption, not verified product availability.
-[Quality audit](docs/data-quality-report.md) Â· [preparation protocol](docs/milestone-2.md).
+[Quality audit](docs/data-quality-report.md) | [preparation protocol](docs/milestone-2.md).
 
-### Validation development â€” model selection
+### Validation development: model selection
 
 Ten weekly origins, 2011-06-06 through 2011-08-08; targets end 2011-09-04.
 Macro per-SKU MASE with frozen seven-day original-training scales is primary.
 
-| Fixed method | Macro MASE â†“ | MAE | Pooled WAPE | Relative bias |
+| Fixed method | Macro MASE (lower is better) | MAE | Pooled WAPE | Relative bias |
 | --- | ---: | ---: | ---: | ---: |
-| **Eight-week weekday mean â€” selected** | **0.7581** | **26.77** | **97.18%** | âˆ’2.59% |
-| Seasonal naive | 0.9160 | 32.04 | 116.33% | âˆ’6.18% |
-| Recent 28-day mean | 0.8042 | 28.51 | 103.52% | âˆ’4.17% |
+| **Eight-week weekday mean (selected)** | **0.7581** | **26.77** | **97.18%** | -2.59% |
+| Seasonal naive | 0.9160 | 32.04 | 116.33% | -6.18% |
+| Recent 28-day mean | 0.8042 | 28.51 | 103.52% | -4.17% |
 | Pooled Ridge, alpha 1 | 0.8261 | 27.84 | 101.07% | +11.87% |
 | Fixed pooled Poisson boosting | 0.7788 | 27.46 | 99.70% | +11.06% |
 
@@ -140,21 +142,21 @@ zero-sales days and clipped 11.03% of predictions at zero. Boosting improved on
 Ridge but still lost to weekday mean and overforecast overall. Extreme orders
 remained. Squared-error/Poisson training objectives do not directly optimize
 macro MASE; changing class and loss together does not isolate a cause.
-[Ridge findings](docs/ridge-comparison.md) Â· [boosting findings](docs/boosting-comparison.md).
+[Ridge findings](docs/ridge-comparison.md) | [boosting findings](docs/boosting-comparison.md).
 
 Boosting was **validation-informed development** after Ridge diagnostics, not
 untouched holdout evidence. Later origins may use sales already observed before
 issue time, never realized sales inside their future 28-day horizon.
 
-### Final test â€” one frozen, consumed assessment
+### Final test: one frozen, consumed assessment
 
 Ten Monday origins, 2011-09-05 through 2011-11-07; targets end 2011-12-04.
 Only the selected forecaster and already-defined reference were evaluated.
 
 | Method | Macro MASE | MAE | Pooled WAPE | Relative bias |
 | --- | ---: | ---: | ---: | ---: |
-| **Frozen weekday mean** | **0.8656** | **29.45** | **91.52%** | **âˆ’7.36%** |
-| Fixed seasonal naive | 1.0423 | 35.58 | 110.56% | âˆ’8.51% |
+| **Frozen weekday mean** | **0.8656** | **29.45** | **91.52%** | **-7.36%** |
+| Fixed seasonal naive | 1.0423 | 35.58 | 110.56% | -8.51% |
 
 Weekday mean's macro MASE was **16.95% lower** than the reference, descriptively;
 93/100 SKUs had lower MASE. This did not trigger model switching. Each period has
@@ -210,7 +212,7 @@ Clean-checkout and publication/history check evidence: [Milestone 12](docs/miles
 Chen, D. (2012). [Online Retail II](https://doi.org/10.24432/C5CG6D), UCI Machine
 Learning Repository, **[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)**.
 Derived reports/bundle data retain attribution and change notices.
-[Retrieval/checksums](docs/data-provenance.json) Â· [dataset notice](deployment/DATASET-ATTRIBUTION.md).
+[Retrieval/checksums](docs/data-provenance.json) | [dataset notice](deployment/DATASET-ATTRIBUTION.md).
 No confidential REWE data is used. Raw/customer-level data, environments, secrets,
 models, full generated outputs and runtime bundles stay outside Git.
 
@@ -220,7 +222,7 @@ production-ready: fixed historical SKUs/origins; no live ingestion, authenticati
 operational inventory integration or load benchmark. Availability, uncensored
 demand and causal business impact are unknown.
 
-[Publication proposal/decisions](publication/README.md) Â· [release notes](publication/release-notes.md) Â·
+[Publication proposal/decisions](publication/README.md) | [release notes](publication/release-notes.md) |
 [CV bullets/demo walkthrough](publication/portfolio-copy.md).
 The original development workspace, Git history and protected research artifacts
 remain separate and are not included in this fresh publication history. Scientific
